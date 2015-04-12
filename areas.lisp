@@ -24,11 +24,15 @@
   ((x :accessor point_2d-x :initarg :x :initform 0.0)
    (y :accessor point_2d-y :initarg :y :initform 0.0)))
 
-(defmethod print_01 ((p point_2d))
-  (format T "(#point_2d x=~A y=~A)" (point_2d-x p) (point_2d-y p)))
+(defgeneric print_01 (p)
+  (:documentation "Bla bla bla")
+  (:method ((p point_2d))
+    (format T "#point_2d(x=~S y=~S)" (point_2d-x p) (point_2d-y p))))
 
-(let ((p1 (make-instance 'point_2d)))
-  (print_01 p1))
+(defmethod print-object :before ((p point_2d) s ) (format s "#point_2d" ))
+(defmethod print-object         ((p point_2d) s ) (format s "(x=~S y=~S)" (point_2d-x p) (point_2d-y p)))
+
+;;;;(make-instance 'poi)
 
 (defclass areable()
   ( )
