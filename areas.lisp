@@ -20,6 +20,37 @@
   (let ((summ (apply #'+ (cons x rst))))
     (mapcar #'(lambda (el) (/ el summ)) (cons x rst))))
 
+(defclass zavihritel-osevoy ()
+  (
+   (inner-diameter :accessor zavihritel-osevoy-inner-diameter :initarg :inner-diameter :initform 50.0)
+   (outer-diameter :accessor zavihritel-osevoy-outer-diameter :initarg :outer-diameter :initform 100.0)
+   (number-lopatok :accessor zavihritel-osevoy-number-lopatok :initarg :number-lopatok :initform 12)
+   (angle-lopatok  :accessor zavihritel-osevoy-angle-lopatok  :initarg :angle-lopatok  :initform 50)
+   (delta-lopatok  :accessor zavihritel-osevoy-delta-lopatok  :initarg :delta-lopatok  :initform 2.5)))
+
+(defgeneric area (x)
+  (:documentation "Вычисляет площадь")
+  (:method ((x zavihritel-osevoy))
+    "Вычисляет площадь осевого завихрителя
+(defparameter aaa (make-instance 'zavihritel-osevoy))
+(area aaa)"
+    (- 
+     (* pi
+	1/4
+	(cos(dtr (zavihritel-osevoy-angle-lopatok x)))
+	(-
+	 (*
+	  (zavihritel-osevoy-outer-diameter x)
+	  (zavihritel-osevoy-outer-diameter x))
+	 (*
+	  (zavihritel-osevoy-inner-diameter x)
+	  (zavihritel-osevoy-inner-diameter x))))
+     (* 1/2
+	(zavihritel-osevoy-number-lopatok x)
+	(zavihritel-osevoy-delta-lopatok x)
+	(- (zavihritel-osevoy-outer-diameter x)
+	   (zavihritel-osevoy-inner-diameter x))))))
+
 (defclass point_2d()
   ((x :accessor point_2d-x :initarg :x :initform 0.0)
    (y :accessor point_2d-y :initarg :y :initform 0.0)))
