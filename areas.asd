@@ -7,5 +7,6 @@
   :serial t
   :depends-on (#:lst-arr #:dims)
   :components ((:file "package")
-               (:file "areas")))
+               (:file "areas")
+	       (:file "values")))
 

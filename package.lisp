@@ -6,6 +6,7 @@
   (:export point_2d print_01)
   (:export zavihritel-osevoy)
   (:export area)
+  (:export vd)
   )
 
 
