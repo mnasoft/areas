@@ -4,9 +4,13 @@
 
 ;;; "areas" goes here. Hacks and glory await!
 
-(defun f_otv(d) (* d d 0.25 pi))
+(defun f_otv(d)
+  "Вычисляет площадь отверстия по его диаметру"
+  (* d d 0.25 pi))
 
-;(defun f_ek (x)(/ (sqrt (apply #'+ (mapcar #'(lambda(el) (/ 1.0 el el)) x)))))
+(defun d_ek(f)
+  "Вычисляет диаметр круга по его площади"
+  (sqrt (/ (* 4 f) pi)))
 
 (defun f_ek (x &rest rst)
   ""
