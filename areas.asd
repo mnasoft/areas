@@ -3,11 +3,12 @@
 (asdf:defsystem #:areas
   :description "Describe areas here"
   :author "Your Name <your.name@example.com>"
-  :license "Specify license here"
+  :license "GNU General Public License version 3"
   :serial t
   :depends-on (#:lst-arr #:dims)
   :components ((:file "package")
                (:file "areas")
+	       (:file "angle-conversion")
 	       (:file "values")
-	       (:file "test")))
-
+;;;;	       (:file "test")
+	       ))

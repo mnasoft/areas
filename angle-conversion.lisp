@@ -1,6 +1,6 @@
 ;;;; angle-conversion.lisp
 
-(in-package #:angle-conversion)
+(in-package #:areas)
 
 (defun degrees-to-radians (d)
   "Преобразование градусов в радианы"

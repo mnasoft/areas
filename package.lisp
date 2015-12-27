@@ -2,11 +2,24 @@
 
 (defpackage #:areas
   (:use #:cl)
-  (:export f_otv d_ek f_ek dtr f_otn)
-  (:export point_2d print_01)
-  (:export zavihritel-osevoy)
-  (:export area)
-  (:export vd)
+  (:export
+   circle-area-by-diameter
+   circle-area-by-radius
+   circle-diameter-by-area
+   equivalent-area-group-holes
+   parts
+   )
+  (:export
+   degrees-to-radians
+   radians-to-degrees
+   degrees-minutes-seconds-to-radians
+   degrees-to-degrees-minutes
+   degrees-to-degrees-minutes-seconds
+   radians-to-degrees-minutes-seconds
+   )
   )
+
+
+
 
 
