@@ -1,36 +1,5 @@
-(require :areas)
+(asdf:oos 'asdf:load-op :areas)
 (use-package :areas)
-
-(asdf:oos 'asdf:load-op :postmodern)
-(use-package :postmodern)
-
-(connect-toplevel "namatv" "namatv" "" "localhost")
-
-
-(defun foo (name-like-lst)
-  (let
-      ((lk-lst (cons :and (mapcar #'(lambda (el) (list :ilike 'name (concatenate 'string "%" el "%")) ) 
-				  name-like-lst))
-	       )
-       )
-    (doquery (list :select 'designation 'name :from 'gost
-		      :where  lk-lst))
-	     (designation name)
-	     (format t "<tr><td>~A</td><td>~A</td><tr>~%" designation name))))
-
-(defun foo (name-like-lst)
-  (let
-      ((lk-lst
-	(cons :and
-	      (mapcar #'(lambda (el) (list :like (quote 'name) (concatenate 'string "%" el "%")) ) 
-		      name-like-lst))
-	 )
-       (assa "%asd%")
-       )
-    (break "~S" lk-lst )
-    (sql (:select 'designation 'name :from 'gost :where lk-lst))))
-
-    (sql (:select 'designation 'name :from 'gost :where (:and (:like 'name (concatenate 'string "%" "el" "%")) (:like 'name "asd"))))
 
 
 (defun assa()
