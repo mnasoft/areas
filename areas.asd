@@ -9,5 +9,6 @@
   :components ((:file "package")
                (:file "areas")
 	       (:file "angle-conversion")
+	       (:file "classes")
 ;;;;	       (:file "test")
 	       ))
