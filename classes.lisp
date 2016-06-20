@@ -58,7 +58,7 @@
 Пример использования:
 ;;;; (let ((aaa (make-instance 'zavihritel-osevoy))) (print  (list aaa (area aaa))))
 "
-  (- (* pi 1/4 (cos (degrees-to-radians (vane-angle x)))
+  (- (* pi 1/4 (cos (degrees->radians (vane-angle x)))
 	(- (* (out-diameter x) (out-diameter x))
 	   (* (in-diameter x) (in-diameter x))))
      (* 1/2 (vane-number x) (vane-width x) (- (out-diameter x) (in-diameter x)))))

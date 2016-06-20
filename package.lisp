@@ -1,23 +1,13 @@
 ;;;; package.lisp
 
 (defpackage #:areas
-  (:use #:cl)
+  (:use #:cl #:convertion)
   (:export
    circle-area-by-diameter
    circle-area-by-radius
    circle-diameter-by-area
    equivalent-area-group-holes
-   parts
-   )
-  (:export
-   degrees-to-radians
-   radians-to-degrees
-   degrees-minutes-seconds-to-radians
-   degrees-to-degrees-minutes
-   degrees-to-degrees-minutes-seconds
-   radians-to-degrees-minutes-seconds
-   )
-  )
+   parts))
 
 ;;;;(declaim (optimize (space 0) (compilation-speed 0)  (speed 0) (safety 3) (debug 3)))
 
