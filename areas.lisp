@@ -29,6 +29,21 @@
   (let ((summ (apply #'+ (cons x rst))))
     (mapcar #'(lambda (el) (/ el summ)) (cons x rst))))
 
-
-
+(defun axial-swirler (d-sm d-big n-blades width-blades angle-blades)
+  "Выполняет расчет площади осевого завихрителя;
+| d-sm         | - | меньший диаметр                      |
+|--------------+---+--------------------------------------|
+| d-big        | - | больший диаметр                      |
+| n-blades     | - | количество лопаток завихрителя       |
+| width-blades | - | толщина лопаток завихрителя          |
+| angle-blades | - | угол какрутки потока лопатками, град |
+"
+  (let ((a-b (* angle-blades (/ pi 180)))
+	)
+    (- (* pi 0.25
+	  (- (* d-big d-big) (* d-sm d-sm))
+	  (cos a-b)
+	  )
+       (* n-blades width-blades 1/2 (- d-big d-sm)))
+    ))
 
