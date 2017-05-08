@@ -2,6 +2,8 @@
 
 (in-package :areas)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defclass zavihritel-osevoy ()
   ((out-diameter :accessor out-diameter :initarg :out-diameter :initform 100.0 :documentation "Наружный диаметр лопаточного аппарата")
    (in-diameter  :accessor in-diameter  :initarg :in-diameter  :initform 50.0  :documentation "Внутренний диаметр лопаточного аппарата")
@@ -27,54 +29,43 @@
 (defmethod print-object         ((x point-3d) s) (format s "~S"
 							 (list (x x) (y x) (z x))))
 
-(defclass areable() ())
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defclass perinmetrable() ())
+(defclass areable() ())
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defclass circle(areable)
-  ((radius :accessor radius :initarg :radius :initform 100.0 :documentation "Радиус окружности")
-   (center :accessor center :initarg :center :initform (make-instance 'point-3d) :documentation "Радиус окружности")))
+(defclass perimetrable() ())
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defclass circle (areable perimetrable)
+  ((radius :accessor circle-radius :initarg :radius :initform 100.0 :documentation "Радиус окружности")
+   (center :accessor circle-center :initarg :center :initform (make-instance 'point-3d) :documentation "Радиус окружности")))
 
 (defmethod print-object :before ((x circle) s) (format s "#circle" ))
 
-(defmethod print-object         ((x circle) s) (format s "(r=~A c=~S)" (radius x) (center x)))
+(defmethod print-object         ((x circle) s) (format s "(r=~A c=~S)" (circle-radius x) (circle-center x)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defclass rectangle() ())
+(defclass rectangle()
+  ((length-1 :accessor rectangle-length-1 :initarg :length-1 :initform 100.0
+	     :documentation "Длина первой стороны прямоунольника")
+   (length-2 :accessor rectangle-length-2 :initarg :length-2 :initform 50.0
+	     :documentation "Длина второй стороны прямоунольника")
+   (center   :accessor rectangle-center   :initarg :center :initform (make-instance 'point-3d)
+	     :documentation "Геометрический центр прямоугольника")
+   (angle    :accessor rectangle-angle    :initarg :center :initform 0
+	     :documentation "Направление первой стороны в радианах")))
+
+(defmethod print-object :before ((x rectangle) s) (format s "#rectangle" ))
+
+(defmethod print-object         ((x rectangle) s) (format s "(a=~A b=~A)" (rectangle-length-1 x) (rectangle-length-2 x)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defclass romb() ())
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defgeneric area (x) (:documentation "Вычисляет площадь"))
-
-(defmethod area ((x zavihritel-osevoy))
-    "Вычисляет площадь осевого завихрителя
-Пример использования:
-;;;; (let ((aaa (make-instance 'zavihritel-osevoy))) (print  (list aaa (area aaa))))
-"
-  (- (* pi 1/4 (cos (degrees->radians (vane-angle x)))
-	(- (* (out-diameter x) (out-diameter x))
-	   (* (in-diameter x) (in-diameter x))))
-     (* 1/2 (vane-number x) (vane-width x) (- (out-diameter x) (in-diameter x)))))
-
-(defmethod area ((x circle))
-  "Возвращает плошадь круга 
-Пример использования:
-;;;; (let ((c (make-instance 'circle))) (print (list c (area c))))
-"
-  (* pi (radius x) (radius x)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defgeneric dxf-out (p &optional s) (:documentation "Выводит объект в dxf"))
-
-(defmethod dxf-out ((p point-3d) &optional (s t))
-    (format s "0~%POINT~%10~%~A~%20~%~A~%30~%~A" (x p) (y p) (z p)))
-
-(dxf-out (make-instance 'point-3d) nil)

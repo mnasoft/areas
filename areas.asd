@@ -9,5 +9,6 @@
   :components ((:file "package")
                (:file "areas")
 	       (:file "classes")
+	       (:file "methods" :depends-on ("classes"))
 ;;;;	       (:file "test")
 	       ))

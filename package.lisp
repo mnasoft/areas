@@ -9,7 +9,13 @@
    equivalent-area-group-holes
    parts
    axial-swirler
-   ))
+   )
+  (:export circle
+	   circle-radius
+	   circle-center)
+  (:export area
+	   perimeter)
+  )
 
 ;;;;(declaim (optimize (space 0) (compilation-speed 0)  (speed 0) (safety 3) (debug 3)))
 
