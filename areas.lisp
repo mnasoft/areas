@@ -47,3 +47,15 @@
        (* n-blades width-blades 1/2 (- d-big d-sm)))
     ))
 
+(defun ring-area (d-big d-small)
+  (- (circle-area-by-diameter d-big)
+     (circle-area-by-diameter d-small)))
+
+(defun ring-volume (d-big d-small hight)
+  (* (ring-area d-big d-small) hight))
+
+(defun ring-mass (d-big d-small hight &optional (density (* 0.001 0.001 7.8)))
+  (* (ring-volume d-big d-small hight) density))
+
+
+
