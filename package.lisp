@@ -15,10 +15,8 @@
 	   circle-center)
   (:export area
 	   perimeter)
-  (:export ring-area
-	   ring-volume
-	   ring-mass
-	   )
+  (:export ring-area ring-volume ring-mass)
+  (:export pipe-area pipe-volume pipe-mass)
   )
 
 ;;;;(declaim (optimize (space 0) (compilation-speed 0)  (speed 0) (safety 3) (debug 3)))

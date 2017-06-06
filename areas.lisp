@@ -58,4 +58,14 @@
   (* (ring-volume d-big d-small hight) density))
 
 
+(defun pipe-area (d-big wall)
+  (- (circle-area-by-diameter d-big)
+     (circle-area-by-diameter (- d-big wall wall))))
+
+(defun pipe-volume (d-big wall hight)
+  (* (pipe-area d-big wall) hight))
+
+(defun pipe-mass (d-big wall hight &optional (density (* 0.001 0.001 7.8)))
+  (* (pipe-volume d-big wall hight) density))
+
 
