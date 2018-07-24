@@ -38,14 +38,11 @@
 | width-blades | - | толщина лопаток завихрителя          |
 | angle-blades | - | угол какрутки потока лопатками, град |
 "
-  (let ((a-b (* angle-blades (/ pi 180)))
-	)
+  (let ((a-b (* angle-blades (/ pi 180))))
     (- (* pi 0.25
 	  (- (* d-big d-big) (* d-sm d-sm))
-	  (cos a-b)
-	  )
-       (* n-blades width-blades 1/2 (- d-big d-sm)))
-    ))
+	  (cos a-b))
+       (* n-blades width-blades 1/2 (- d-big d-sm)))))
 
 (defun ring-area (d-big d-small)
   (- (circle-area-by-diameter d-big)
@@ -56,7 +53,6 @@
 
 (defun ring-mass (d-big d-small hight &optional (density (* 0.001 0.001 7.8)))
   (* (ring-volume d-big d-small hight) density))
-
 
 (defun pipe-area (d-big wall)
   (- (circle-area-by-diameter d-big)
