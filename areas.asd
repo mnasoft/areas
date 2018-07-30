@@ -6,7 +6,8 @@
   :license "GNU General Public License version 3"
   :serial t
   :depends-on (#:lst-arr #:convertion)
-  :components ((:file "package")
+  :components (
+;;;;	       (:file "package")
                (:file "areas")
 	       (:file "classes")
 	       (:file "methods" :depends-on ("classes"))
