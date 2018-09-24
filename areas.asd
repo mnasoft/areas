@@ -1,13 +1,13 @@
 ;;;; areas.asd
 
-(asdf:defsystem #:areas
+(defsystem #:areas
   :description "Describe areas here"
-  :author "Your Name <your.name@example.com>"
-  :license "GNU General Public License version 3"
+  :author "Nick Matvyeyev <mnasoft@gmail.com>"
+  :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"  
   :serial t
   :depends-on (#:lst-arr #:convertion)
   :components (
-;;;;	       (:file "package")
+	       (:file "package")
                (:file "areas")
 	       (:file "classes")
 	       (:file "methods" :depends-on ("classes"))
