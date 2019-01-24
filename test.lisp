@@ -35,3 +35,6 @@
 	(format t "~A~%" (circle-area-by-diameter ex-cond))))))
 
 ;;;;(save-lisp-and-die "/home/namatv/f_otv" :executable t :compression t :toplevel 'assa)
+
+
+
