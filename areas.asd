@@ -10,6 +10,7 @@
 	       (:file "package")
                (:file "areas")
 	       (:file "classes")
-	       (:file "methods" :depends-on ("classes"))
+       	       (:file "generics" :depends-on ("classes"))
+	       (:file "methods"  :depends-on ("classes" "generics"))
 ;;;;	       (:file "test")
 	       ))

@@ -1,6 +1,6 @@
-(asdf:oos 'asdf:load-op :areas)
-(use-package :areas)
+;;;; test.lisp
 
+(in-package :areas)
 
 (defun assa()
   (do ((ex-cond nil)
@@ -37,4 +37,52 @@
 ;;;;(save-lisp-and-die "/home/namatv/f_otv" :executable t :compression t :toplevel 'assa)
 
 
+(defparameter *r* (make-instance 'rectangle :length-1 10 :length-2 20))
+
+(perimeter *r*) => 60
+
+(setf (perimeter *r*) 30)
+*r*             => #rectangle(a=5 b=10)
+
+
+
+(+
+ (equivalent-area-group-holes
+  (* 22. 0.8 (area (make-instance 'circle :radius 1.5)))
+  (* 29. 0.8 (area (make-instance 'circle :radius 1.))))
+;;;; 62.88725429236749d0
+
+ (equivalent-area-group-holes
+  (* 25. 0.8 (area (make-instance 'circle :radius 1.5)))
+  (* 31. 0.8 (area (make-instance 'circle :radius 1.))))
+;;;; 68.23525661357998d0
+
+ (equivalent-area-group-holes
+  (*  1. 0.8 (area (make-instance 'circle :radius 13/2)))
+  (* 11. 0.8 (area (make-instance 'circle :radius 1.)))
+  (*  9. 0.8 (area (make-instance 'circle :radius 1.))))
+
+;;;; 17.273322937009457d0
+
+ (equivalent-area-group-holes
+  (*  1. 0.8 (area (make-instance 'circle :radius 13/2)))
+  (* 11. 0.8 (area (make-instance 'circle :radius 1.)))
+  (*  9. 0.8  (area (make-instance  'circle :radius 1.))))
+;;;; 17.273322937009457d0
+
+ (* 5
+    (equivalent-area-group-holes
+     (*  2. 0.8  (area (make-instance 'circle :radius 8/2)))
+     (* 14. 0.8  (area (make-instance 'circle :radius 0.8)))))
+;;;; 108.42462773141749d0
+ )
+
+;;;; 274.0937845113839d0
+
+(/ 274.093 (+ 274.093 4800.))
+
+(/
+ (- (area (make-instance 'circle :radius 80))
+    (area (make-instance 'circle :radius 76)))
+(area (make-instance 'circle :radius 80)))
 
