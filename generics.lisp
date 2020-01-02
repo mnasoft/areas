@@ -24,7 +24,7 @@
   (:documentation "@b(Описание:) diameter возвращает диаметр объекта."))
 
 (defgeneric (setf diameter) (diameter obj)
-  (:documentation "@b(Описание:) radius устанавливает радиус объекта."))
+  (:documentation "@b(Описание:) radius устанавливает диаметр объекта."))
 
 
 (defgeneric dxf-out (p &optional s) (:documentation "Выводит объект в dxf"))
