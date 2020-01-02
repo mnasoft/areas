@@ -36,7 +36,6 @@
 
 ;;;;(save-lisp-and-die "/home/namatv/f_otv" :executable t :compression t :toplevel 'assa)
 
-
 (defparameter *r* (make-instance 'rectangle :length-1 10 :length-2 20))
 
 (perimeter *r*) => 60

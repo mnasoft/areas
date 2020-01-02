@@ -1,1 +1,61 @@
-This is the stub README.txt for the "areas" project.
+
+* Areas - Площади
+Предназначен для вычисления площадей геометрических фигур
+и проходных сечений объектов.
+
+* Классы проекта
+
+#+name: pwd 
+#+BEGIN_SRC shell :exports none
+pwd
+#+END_SRC
+
+#+name: classes
+#+BEGIN_SRC lisp :var fpath=pwd :exports none
+  ;;;;(require :mnas-graph)
+  ;;;;(require :mnas-package)
+    (mnas-graph:view-graph
+     (mnas-package:make-class-graph :areas)
+     :viewer nil
+     :out-type "png" :fname "classes" :fpath fpath)
+#+END_SRC
+
+#+RESULTS: classes
+: #GRAPH(VC=23 RC=8)
+: (T:"<PERIMETRABLE>" T:"<PERIMETRABLE>" T:"<ROMB>" T:"<PERIMETRABLE>" T:"<RECTANGLE>" T:"<PERIMETRABLE>" T:"<CIRCLE>" T:"<PERIMETRABLE>" T:"<ZAVIHRITEL-OSEVOY>" T:"<ROMB>" T:"<AREABLE>" T:"<AREABLE>" T:"<ROMB>" T:"<AREABLE>" T:"<RECTANGLE>" T:"<AREABLE>" T:"<CIRCLE>" T:"<AREABLE>" T:"<ZAVIHRITEL-OSEVOY>" T:"<ZAVIHRITEL-OSEVOY>" T:"<CIRCLE>" T:"<POINT-3D>" T:"<RECTANGLE>" )
+: ((T:"<PERIMETRABLE>"->T:"<ROMB>") (T:"<PERIMETRABLE>"->T:"<RECTANGLE>") (T:"<PERIMETRABLE>"->T:"<CIRCLE>") (T:"<PERIMETRABLE>"->T:"<ZAVIHRITEL-OSEVOY>") (T:"<AREABLE>"->T:"<ROMB>") (T:"<AREABLE>"->T:"<RECTANGLE>") (T:"<AREABLE>"->T:"<CIRCLE>") (T:"<AREABLE>"->T:"<ZAVIHRITEL-OSEVOY>") ))
+
+#+CAPTION: Диаграмма классов
+#+NAME:   areas:classes
+#+attr_html: :width 500px
+#+attr_latex: :width 200px
+[[file:classes.gv.png]]
+
+
+* [0/5] Задачи
+- [ ] Написать классы:
+  - [ ] pipe;
+  - [ ] ring;
+  - [ ] round-bar;
+- [ ] Написать обобщенные функции:
+  - [ ] volume;
+  - [ ] mass;
+- [ ] Написать функции тестирования
+- [ ] Выполнить стилевое оформление кода по [[file:~/org/sbcl/cl-style-guide.org][cl-style-guide]]:
+  - [ ] Указать типы для слотов всех классов;
+  - [ ] ...
+- [ ] Создать каталог документации
+
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: AREAS
+#+DATE: <2020-01-02 Чт>
+#+AUTHOR:
+#+EMAIL: namatv@mnasoft-00
+#+LANGUAGE: ru
+#+SELECT_TAGS: export
+#+CREATOR: Emacs 26.3 (Org mode 9.1.9)
+#+EXCLUDE_TAGS: noexport

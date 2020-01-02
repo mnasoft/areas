@@ -4,10 +4,9 @@
 
 (annot:enable-annot-syntax)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 @export
-(defclass <zavihritel-osevoy> ()
+@annot.class:export-accessors
+(defclass <zavihritel-osevoy> (<areable> <perimetrable>)
   ((out-diameter :accessor out-diameter :initarg :out-diameter :initform 100.0 :documentation "Наружный диаметр лопаточного аппарата")
    (in-diameter  :accessor in-diameter  :initarg :in-diameter  :initform 50.0  :documentation "Внутренний диаметр лопаточного аппарата")
    (vane-number  :accessor vane-number  :initarg :vane-number  :initform 12    :documentation "Количество лопаток завихрителя")
@@ -23,6 +22,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 @export
+@annot.class:export-accessors
 (defclass <point-3d> ()
   ((x :accessor x :initarg :x :initform 0.0)
    (y :accessor y :initarg :y :initform 0.0)
@@ -57,7 +57,7 @@
 
 @export
 @annot.class:export-accessors
-(defclass <rectangle>()
+(defclass <rectangle> (<areable> <perimetrable>)
   ((length-1 :accessor rectangle-length-1 :initarg :length-1 :initform 100.0
 	     :documentation "Длина первой стороны прямоунольника")
    (length-2 :accessor rectangle-length-2 :initarg :length-2 :initform 50.0
@@ -71,10 +71,11 @@
 
 (defmethod print-object         ((x <rectangle>) s) (format s "(a=~A b=~A)" (rectangle-length-1 x) (rectangle-length-2 x)))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defclass <romb> () ())
+@export
+@annot.class:export-accessors
+(defclass <romb> (<areable> <perimetrable>) ())
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
