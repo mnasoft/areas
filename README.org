@@ -32,7 +32,10 @@ pwd
 [[file:classes.gv.png]]
 
 
-* [0/5] Задачи
+* [0/6] Задачи
+- [ ] Удалить классы
+  - [ ] <aeraeble>
+  - [ ] <perametraeble>
 - [ ] Написать классы:
   - [ ] pipe;
   - [ ] ring;
@@ -44,7 +47,12 @@ pwd
 - [ ] Выполнить стилевое оформление кода по [[file:~/org/sbcl/cl-style-guide.org][cl-style-guide]]:
   - [ ] Указать типы для слотов всех классов;
   - [ ] ...
-- [ ] Создать каталог документации
+- [-] Документирование
+  - [X] Создать каталог документации codex;
+  - [ ] Написать документацию:
+    - [ ] функций;
+    - [ ] классов;
+
 
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
 #+OPTIONS: author:t broken-links:nil c:nil creator:nil

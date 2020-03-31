@@ -1,43 +1,75 @@
 ;;;; areas.lisp
 
-;;;;(declaim (optimize (space 0) (compilation-speed 0)  (speed 0) (safety 3) (debug 3)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (in-package #:areas)
 
 (annot:enable-annot-syntax)
 
 @export
 @annot.doc:doc
-"@b(Описание:) circle-area-by-diameter вычисляет площадь круга по его диаметру."
+"@b(Описание:) circle-area-by-diameter вычисляет площадь круга по его диаметру.
+
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+ (circle-area-by-diameter 1) => 0.7853981633974483d0
+@end(code)
+"
 (defun circle-area-by-diameter (d)
   (* d d 0.25 pi))
 
 @export
 @annot.doc:doc
-"@b(Описание:) circle-area-by-radius вычисляет площадь круга по его диаметру."
+"@b(Описание:) circle-area-by-radius вычисляет площадь круга по его радиусу.
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+ (circle-area-by-radius 1) => 3.141592653589793d0
+@end(code)
+"
 (defun circle-area-by-radius (r)
   (* r r pi))
 
 @export
 @annot.doc:doc
-"@b(Описание:) circle-diameter-by-area вычисляет диаметр круга по его площади."
+"@b(Описание:) circle-diameter-by-area вычисляет диаметр круга по его площади.
+
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+ (circle-diameter-by-area pi) => 2.0d0
+@end(code)
+"
 (defun circle-diameter-by-area (a)
   (sqrt (/ (* 4 a) pi)))
 
 @export
 @annot.doc:doc
-"Вычисляет эквивалентную площадь последовательно расположенных отверстий"
+"@b(Описание:) функция equivalent-area-group-holes вычисляет эквивалентную
+площадь последовательно расположенных отверстий.
+
+ @b(Переменые:)
+@begin(list)
+ @item(x - площадь первого отверстия;)
+ @item(rst - перечень площадей последующих отверстий.)
+@end(list)
+
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+ (equivalent-area-group-holes 2.0)          => 2.0
+ (equivalent-area-group-holes 2.0 2.0)      => 1.4142135
+ (equivalent-area-group-holes 2.0 2.0 20.0) => 1.4106913 
+ (equivalent-area-group-holes 1.0 2.0 3.0)  => 0.8571428
+@end(code)
+"
 (defun equivalent-area-group-holes (x &rest rst)
   (/ (sqrt (apply #'+ (mapcar #'(lambda(el) (/ 1.0 el el)) (cons x rst))))))
 
 @export
 @annot.doc:doc
-"Возвращает доли, задаваемые списком аргументов
-Пример использования:
-;;;; (parts 1.0 2.0 1.0)
-;;;; =>(0.25 0.5 0.25)
+"@b(Описание:) функция parts возвращает список долей, задаваемые перечнем аргументов.
+
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+ (parts 1.0 2.0 1.0) =>  (0.25 0.5 0.25)
+ (parts 1.0)         =>  (1.0)
+@end(code)
 "
 (defun parts(x &rest rst)
   (let ((summ (apply #'+ (cons x rst))))
@@ -65,20 +97,20 @@
 
 @export
 @annot.doc:doc
-"Площадь кольца"
+"@b(Описание:) функция ring-area возврвщвет площадь кольца."
 (defun ring-area (d-big d-small)
   (- (circle-area-by-diameter d-big)
      (circle-area-by-diameter d-small)))
 
 @export
 @annot.doc:doc
-"Объем кольца"
+"@b(Описание:) ring-volume Объем кольца"
 (defun ring-volume (d-big d-small hight)
   (* (ring-area d-big d-small) hight))
 
 @export
 @annot.doc:doc
-"Объем кольца"
+"Масса кольца"
 (defun ring-mass (d-big d-small hight &optional (density (* 0.001 0.001 7.8)))
   (* (ring-volume d-big d-small hight) density))
 
