@@ -1,0 +1,46 @@
+@begin(section)
+@title(Overview)
+
+This is where you explain what your project does.
+
+@end(section)
+
+@begin(section)
+@title(API Reference)
+
+And this is where you list your project's functionality. Read the tutorial to
+learn how to do this.
+
+@end(section)
+
+@begin(section)
+ @title(Графы)
+ @begin(list)
+  @item(system-graph @image[src=./system-graph.gv.png]())
+  @item(call-graph   @image[src=./call-graph.gv.png]())
+  @item(symbol-graph @image[src=./symbol-graph.gv.png]())
+  @item(class-graph  @image[src=./class-graph.gv.png]())
+ @end(list)
+@end(section)
+
+@begin(section)
+@title(Функции)
+@cl:with-package[name="areas"](
+ @cl:doc(function circle-area-by-diameter)
+ @cl:doc(function circle-area-by-radius)
+ @cl:doc(function circle-diameter-by-area)
+ @cl:doc(function equivalent-area-group-holes)
+ @cl:doc(function parts)
+ @cl:doc(function axial-swirler)
+ @cl:doc(function ring-area)
+ @cl:doc(function ring-volume)
+ @cl:doc(function ring-mass)
+ @cl:doc(function pipe-area)
+ @cl:doc(function pipe-volume)
+ @cl:doc(function pipe-mass)
+ @cl:doc(function round-bar-mass)
+ @cl:doc(function ring-equal-area-radius)
+ @cl:doc(function ring-equal-area-radius-list)
+ @cl:doc(function ring-equal-area-radius-relative-higth-list)
+ )
+@end(section)
