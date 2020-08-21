@@ -54,6 +54,20 @@
 (defmethod print-object         ((x <circle>) s) (format s "(r=~A c=~S)" (circle-radius x) (circle-center x)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defclass form () ())
+
+;;;; @export
+;;;; (defmethod html-out ((x <circle>) )
+;;;;   (cl-who:with-html-output-to-string (output nil :prologue t :indent t)
+;;;;     (:form
+;;;;      :action "edit"
+;;;;      (:table
+;;;;       (:tr (:td "Radius")       (:td (:input :type "number" :name "circle[radius]"   :value (cl-who:str (circle-radius x)))))
+;;;;       (:tr (:td "Diameter")     (:td (:input :type "number" :name "circle[Diameter]" :value (cl-who:str (diameter      x)))))
+;;;;       (:tr (:td "Area"          (:td (:input :type "number" :name "circle[Area]"     :value (cl-who:str (coerce (area x) 'short-float)))))))  ;; 
+;;;;      (:input :type "submit"))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 @export
 @annot.class:export-accessors
