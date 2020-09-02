@@ -2,10 +2,18 @@
 
 (in-package :areas)
 
-(annot:enable-annot-syntax)
+(export '<zavihritel-osevoy>)
 
-@export
-@annot.class:export-accessors
+(export 'out-diameter)
+
+(export 'in-diameter)
+
+(export 'vane-number)
+
+(export 'vane-angle)
+
+(export 'vane-width)
+
 (defclass <zavihritel-osevoy> (<areable> <perimetrable>)
   ((out-diameter :accessor out-diameter :initarg :out-diameter :initform 100.0 :documentation "Наружный диаметр лопаточного аппарата")
    (in-diameter  :accessor in-diameter  :initarg :in-diameter  :initform 50.0  :documentation "Внутренний диаметр лопаточного аппарата")
@@ -17,12 +25,18 @@
 (defmethod print-object :before ((x <zavihritel-osevoy>) s) (format s "#<zavihritel-osevoy>" ))
 
 (defmethod print-object         ((x <zavihritel-osevoy>) s) (format s "(do=~A di=~A vn=~A va=~A vw=~A)"
-								  (out-diameter x) (in-diameter x) (vane-number x) (vane-angle x) (vane-width x)))
+								    (out-diameter x) (in-diameter x) (vane-number x) (vane-angle x) (vane-width x)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-@export
-@annot.class:export-accessors
+(export '<point-3d>)
+
+(export 'x)
+
+(export 'y)
+
+(export 'z)
+
 (defclass <point-3d> ()
   ((x :accessor x :initarg :x :initform 0.0)
    (y :accessor y :initarg :y :initform 0.0)
@@ -31,7 +45,7 @@
 (defmethod print-object :before ((x <point-3d>) s) (format s "#<point-3d>" ))
 
 (defmethod print-object         ((x <point-3d>) s) (format s "~S"
-							 (list (x x) (y x) (z x))))
+							   (list (x x) (y x) (z x))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -43,8 +57,12 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-@export
-@annot.class:export-accessors
+(export '<circle>)
+
+(export 'circle-radius)
+
+(export 'circle-center )
+
 (defclass <circle> (<areable> <perimetrable>)
   ((radius :accessor circle-radius :initarg :radius :initform 100.0 :documentation "Радиус окружности.")
    (center :accessor circle-center :initarg :center :initform (make-instance '<point-3d>) :documentation "Радиус окружности.")))
@@ -69,8 +87,16 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-@export
-@annot.class:export-accessors
+(export '<rectangle>)
+
+(export 'rectangle-length-1)
+
+(export 'rectangle-length-2)
+
+(export 'rectangle-center)
+
+(export 'rectangle-angle )
+
 (defclass <rectangle> (<areable> <perimetrable>)
   ((length-1 :accessor rectangle-length-1 :initarg :length-1 :initform 100.0
 	     :documentation "Длина первой стороны прямоунольника")
@@ -87,9 +113,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-@export
-@annot.class:export-accessors
+
+(export '<romb>)
+
 (defclass <romb> (<areable> <perimetrable>) ())
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
