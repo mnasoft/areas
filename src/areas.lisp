@@ -2,8 +2,6 @@
 
 (in-package #:areas)
 
-(export 'circle-area-by-diameter )
-
 (defun circle-area-by-diameter (d)
 "@b(Описание:) circle-area-by-diameter вычисляет площадь круга по его диаметру.
 
@@ -14,8 +12,6 @@
 "
   (* d d 0.25 pi))
 
-(export 'circle-area-by-radius )
-
 (defun circle-area-by-radius (r)
 "@b(Описание:) circle-area-by-radius вычисляет площадь круга по его радиусу.
  @b(Пример использования:)
@@ -24,8 +20,6 @@
 @end(code)
 "
   (* r r pi))
-
-(export 'circle-diameter-by-area )
 
 (defun circle-diameter-by-area (a)
 "@b(Описание:) circle-diameter-by-area вычисляет диаметр круга по его площади.
@@ -36,8 +30,6 @@
 @end(code)
 "
   (sqrt (/ (* 4 a) pi)))
-
-(export 'equivalent-area-group-holes )
 
 (defun equivalent-area-group-holes (x &rest rst)
 "@b(Описание:) функция equivalent-area-group-holes вычисляет эквивалентную
@@ -59,8 +51,6 @@
 "
   (/ (sqrt (apply #'+ (mapcar #'(lambda(el) (/ 1.0 el el)) (cons x rst))))))
 
-(export 'parts)
-
 (defun parts(x &rest rst)
 "@b(Описание:) функция parts возвращает список долей, задаваемые перечнем аргументов.
 
@@ -72,8 +62,6 @@
 "
   (let ((summ (apply #'+ (cons x rst))))
     (mapcar #'(lambda (el) (/ el summ)) (cons x rst))))
-
-(export 'axial-swirler )
 
 (defun axial-swirler (d-sm d-big n-blades width-blades angle-blades)
 "@b(Описание:) axial-swirler выполняет расчет площади осевого завихрителя.
@@ -93,53 +81,37 @@
 	  (cos a-b))
        (* n-blades width-blades 1/2 (- d-big d-sm)))))
 
-(export 'ring-area )
-
 (defun ring-area (d-big d-small)
 "@b(Описание:) функция ring-area возврвщвет площадь кольца."
   (- (circle-area-by-diameter d-big)
      (circle-area-by-diameter d-small)))
 
-(export 'ring-volume )
-
 (defun ring-volume (d-big d-small hight)
 "@b(Описание:) ring-volume Объем кольца"
   (* (ring-area d-big d-small) hight))
 
-(export 'ring-mass )
-
 (defun ring-mass (d-big d-small hight &optional (density (* 0.001 0.001 7.8)))
 "Масса кольца"
   (* (ring-volume d-big d-small hight) density))
-
-(export 'pipe-area )
 
 (defun pipe-area (d-big wall)
 "Площадь трубы по наружному диаметру и толщине стенки."
   (- (circle-area-by-diameter d-big)
      (circle-area-by-diameter (- d-big wall wall))))
 
-(export 'pipe-volume )
-
 (defun pipe-volume (d-big wall length)
 "Объем трубы по наружному диаметру, толщине стенки и длине."
   (* (pipe-area d-big wall) length))
 
-(export 'pipe-mass )
-
 (defun pipe-mass (d-big wall hight &optional (density (* 0.001 0.001 7.8)))
 "Масса трубы по наружному диаметру, толщине стенки, длине и плотности материала."
   (* (pipe-volume d-big wall hight) density))
-
-(export 'round-bar-mass )
 
 (defun round-bar-mass (d-big length &optional (density (* 0.001 0.001 7.8)))
 "Масса кругляка по наружному диаметру, длине и плотности материала."
   (* (circle-area-by-diameter d-big) length density))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(export 'ring-equal-area-radius )
 
 (defun ring-equal-area-radius (rb rm i n)
 "@b(Описание:) ring-equal-area-radius делит кольцо на n 
@@ -167,8 +139,6 @@
   (sqrt (+ (* (- (* rb rb) (* rm rm)) i (/ 1.0 n))
 	   (* rm rm))))
 
-(export 'ring-equal-area-radius-list )
-
 (defun ring-equal-area-radius-list (rb rm n )
 "@b(Описание:) ring-equal-area-radius-list возвращает радиусы
 центров масс равновеликих площадей при делении кольца на n частей.
@@ -182,8 +152,6 @@
   (let ((m (* 2 n)))
     (loop :for i :from 1 :to m :by 2
 	  :collect (ring-equal-area-radius rb rm i m))))
-
-(export 'ring-equal-area-radius-relative-higth-list )
 
 (defun ring-equal-area-radius-relative-higth-list (rb rm n)
 "@b(Описание:) ring-equal-area-radius-relative-higth-list
