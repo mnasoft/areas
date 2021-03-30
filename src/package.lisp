@@ -4,10 +4,8 @@
   (:use #:cl #:convertion)
   (:export circle-area-by-diameter
            circle-area-by-radius
-           circle-diameter-by-area
-           equivalent-area-group-holes
+           circle-diameter-by-area    
            parts
-           axial-swirler
            ring-area
            ring-volume
            ring-mass
@@ -15,10 +13,12 @@
            pipe-volume
            pipe-mass
            round-bar-mass
-           ring-equal-area-radius
-           ring-equal-area-radius-list
-           ring-equal-area-radius-relative-higth-list
            )
+  (:export equivalent-area-group-holes)
+  (:export ring-equal-area-radius
+           ring-equal-area-radius-list
+           ring-equal-area-radius-relative-higth-list)
+  (:export axial-swirler)
   (:export <zavihritel-osevoy>
            <zavihritel-osevoy>-out-diameter
            <zavihritel-osevoy>-in-diameter
@@ -40,7 +40,13 @@
            <rectangle>-center
            <rectangle>-angle
            )
-  (:export <romb>))
-
+  (:export <romb>)
+  (:export area
+           radius
+           diameter
+           perimeter
+           dxf-out)
+  )
 
 ;;;; (declaim (optimize (compilation-speed 0) (debug 3) (safety 0) (space 0) (speed 0)))
+

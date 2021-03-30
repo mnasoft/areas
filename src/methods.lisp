@@ -5,34 +5,34 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; area ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(export 'area )
-
 (defmethod area ((x <circle>))
   "@b(Описание:) area возвращает плошадь круга.
-@b(Пример использования:)
+
+ @b(Пример использования:)
 @begin[lang=lisp](code)
  (let ((c (make-instance '<circle>))) (print (list c (area c))))
 @end(code)
 "
   (* pi (circle-radius x) (circle-radius x)))
 
-(export 'area )
-
 (defmethod area ((x <rectangle>))
 "@b(Описание:) area возвращает плошадь прямоугольника.
-@b(Пример использования:)
+
+ @b(Пример использования:) 
 @begin[lang=lisp](code)
-(let ((c (make-instance 'rectangle))) (print (list c (area c))))
+ (let ((c (make-instance 'rectangle))) (print (list c (area c))))
 @end(code)
 "
   (* (rectangle-length-1 x) (rectangle-length-2 x)))
 
-(export 'area )
-
 (defmethod area ((x <zavihritel-osevoy>))
-"Вычисляет площадь осевого завихрителя
-Пример использования:
-;;;; (let ((aaa (make-instance 'zavihritel-osevoy))) (print  (list aaa (area aaa))))
+  "@b(Описание:) метод @b(area) вычисляет площадь осевого завихрителя
+
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+  (let ((aaa (make-instance '<zavihritel-osevoy>)))
+    (print  (list aaa (area aaa)))) 
+@end(code)
 "
   (- (* pi 1/4 (cos (degrees->radians (vane-angle x)))
 	(- (* (out-diameter x) (out-diameter x))
@@ -42,14 +42,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; (setf area) ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(export 'area)
-
 (defmethod (setf area) (area (obj <circle>))
   ""
   (setf (circle-radius obj) (sqrt (/ area pi))))
 
-(export 'area)
-  
 (defmethod (setf area) (area (obj <rectangle>))
   "@b(Пример использования:)
 
@@ -66,13 +62,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(export 'perimeter )
-
 (defmethod perimeter ((obj <circle>))
   ""
   (* 2 pi (circle-radius obj)))
-
-(export 'perimeter)
 
 (defmethod (setf perimeter) (perimeter (obj <circle>))
   ""
@@ -80,14 +72,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(export 'perimeter )
-
 (defmethod perimeter ((obj <rectangle>))
   ""
   (* 2 (+  (rectangle-length-1 obj)
 	   (rectangle-length-2 obj))))
-
-(export 'perimeter)
 
 (defmethod (setf perimeter) (perimeter (obj <rectangle>))
   ""
@@ -97,38 +85,59 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(export 'radius )
+(defmethod radius ((circle <circle>))
+  "@b(Описание:) метод @b(radius) возврвщает радиус круга @b(circle).
 
-(defmethod  radius ((obj <circle>))
-""
-  (circle-radius obj))
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+  (radius (make-instance '<circle>)) => 100.0
+  (radius (make-instance '<circle> :radius 10.25)) => 10.25
+@end(code)
+"
+  (<circle>-radius circle))
 
-(export 'diameter )
+(defmethod diameter ((circle <circle>))
+  "@b(Описание:) метод @b(diameter) возврвщает диаметр круга @b(circle).
 
-(defmethod diameter ((obj <circle>))
-  ""
-  (* 2 (circle-radius obj)))
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+  (radius (make-instance '<circle>)) => 100.0
+  (radius (make-instance '<circle> :radius 10.25)) => 10.25
+@end(code)
+"
+  (* 2 (<circle>-radius circle)))
 
-(export 'radius)
+(defmethod (setf radius)  (radius (circle <circle>))
+  "@b(Описание:) setf-метод @b(setf radius) устанавливает радиус круга
+  @b(circle) равным @b(radius).
 
-(defmethod (setf radius)  (radius obj)
-  ""
-  (setf (circle-radius obj) radius))
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+  (let ((circle (make-instance '<circle>)))
+    (setf (radius circle) 51.25)
+    (format t \"~A~%\" circle))
+  -> #<circle>(r=51.25 c=#<point-3d>(0.0 0.0 0.0))
+@end(code)
+"
+  (setf (<circle>-radius circle) radius))
 
-(export 'diameter)
+(defmethod (setf diameter) (diameter (circle <circle>))
+  "@b(Описание:) setf-метод @b(setf radius) устанавливает диаметр круга
+  @b(circle) равным @b(diameter).
 
-(defmethod (setf diameter)  (diameter (obj <circle>))
-  ""
-  (setf (circle-radius obj) (/ diameter 2)))
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+  (let ((circle (make-instance '<circle>)))
+    (setf (diameter circle) 51.25)
+    (format t \"~A~%\" circle)) ->  #<circle>(r=25.625 c=#<point-3d>(0.0 0.0 0.0))
+@end(code)
+"
+  (setf (<circle>-radius circle) (/ diameter 2)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(export 'dxf-out )
-
 (defgeneric dxf-out (p &optional s)
   (:documentation "Выводит объект в dxf"))
-
-(export 'dxf-out )
 
 (defmethod dxf-out ((p <point-3d>) &optional (s t))
 "Пример использования:

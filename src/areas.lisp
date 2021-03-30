@@ -113,7 +113,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun ring-equal-area-radius (rb rm i n)
+(defun ring-equal-area-radius (radius-big radius-small i n)
 "@b(Описание:) ring-equal-area-radius делит кольцо на n 
 концентричных равновеликих по площади колец и возврвщает i-товый радиус.
 @begin(list)
@@ -123,10 +123,10 @@
 
 @b(Переменые:)
 @begin(list)
- @item(rb - Максимальный радиус (наружный радиус кольца);)
- @item(rm - Минимальный радиус (внутренний радиус кольца);)
+ @item(radius-big - наружный радиус кольца;)
+ @item(radius-small - внутренний радиус кольца;)
  @item(i  - i-товый радиус;)
- @item(n  - Количество концентричных колец.)
+ @item(n  - количество концентричных колец.)
 @end(list)
 
 @b(Пример использования:)
@@ -136,29 +136,48 @@
  (ring-equal-area-radius 472.0 411.0 5 5) => 472.0
 @end(code)
 "
-  (sqrt (+ (* (- (* rb rb) (* rm rm)) i (/ 1.0 n))
-	   (* rm rm))))
+  (sqrt (+ (* (- (* radius-big radius-big) (* radius-small radius-small)) i (/ 1.0 n))
+	   (* radius-small radius-small))))
 
-(defun ring-equal-area-radius-list (rb rm n )
+(defun ring-equal-area-radius-list (radius-big radius-small n )
 "@b(Описание:) ring-equal-area-radius-list возвращает радиусы
 центров масс равновеликих площадей при делении кольца на n частей.
 @b(Переменые:)
 @begin(list)
- @item(rb - Максимальный радиус;)
- @item(rm - Минимальный радиус;)
+ @item(radius-big - Максимальный радиус;)
+ @item(radius-small - Минимальный радиус;)
  @item(n  - Количество концентричных колец.)
 @end(list)
 "
   (let ((m (* 2 n)))
     (loop :for i :from 1 :to m :by 2
-	  :collect (ring-equal-area-radius rb rm i m))))
+	  :collect (ring-equal-area-radius radius-big radius-small i m))))
 
-(defun ring-equal-area-radius-relative-higth-list (rb rm n)
-"@b(Описание:) ring-equal-area-radius-relative-higth-list
-Возвращает относительные в центров масс равновеликих площадей 
-при делении кольца на n частей."
-  (let ((h (- rb rm)))
+(defun ring-equal-area-radius-relative-higth-list (radius-big radius-small n)
+  "@b(Описание:) ring-equal-area-radius-relative-higth-list возвращает
+   относительные высоты центров масс равновеликих площадей при делении
+   кольца на @b(n) частей. Относительная высота - расстояние от
+   внутреннего радиуса до точки отнесенное к разности
+   радиусов (наружный минус внутренний).
+
+ @b(Переменые:)
+@begin(list)
+ @item(radius-big - больший радиус кольца;)
+ @item(radius-small - меньший радиус кольца;)
+ @item(n - количество полясов.)
+@end(list)
+
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+ (ring-equal-area-radius-relative-higth-list 472.0 411.0 5)
+ => (0.10657789 0.3149039 0.51724994 0.7141038 0.9058898)
+@end(code)
+"
+  (let ((h (- radius-big radius-small)))
     (mapcar
      #'(lambda (el)
-	 (/ (- el rm) h))
-     (ring-equal-area-radius-list rb rm n))))
+	 (/ (- el radius-small) h))
+     (ring-equal-area-radius-list radius-big radius-small n))))
+
+
+

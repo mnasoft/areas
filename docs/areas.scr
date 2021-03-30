@@ -1,0 +1,28 @@
+@begin(section) @title(Обзор)
+
+Describe areas here@end(section)
+@begin(section) @title(AREAS)
+
+@begin(section)
+ @title(Функции)
+ @cl:with-package[name="AREAS"](
+  @cl:doc(function circle-diameter-by-area)
+  @cl:doc(function ring-equal-area-radius-relative-higth-list)
+  @cl:doc(function ring-equal-area-radius-list)
+  @cl:doc(function parts)
+  @cl:doc(function circle-area-by-diameter)
+  @cl:doc(function equivalent-area-group-holes)
+  @cl:doc(function circle-area-by-radius)
+  @cl:doc(function axial-swirler)
+  @cl:doc(function ring-equal-area-radius))
+@end(section)
+@begin(section)
+ @title(Методы)
+ @cl:with-package[name="AREAS"](
+  @cl:doc(method area (x <zavihritel-osevoy>))
+  @cl:doc(method area (x <rectangle>))
+  @cl:doc(method area (x <circle>))
+  @cl:doc(method radius (circle <circle>))
+  @cl:doc(method diameter (circle <circle>)))
+@end(section)
+@end(section)

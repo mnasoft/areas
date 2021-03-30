@@ -1,6 +1,6 @@
 ;;;; areas.asd
 
-(defsystem #:areas
+(defsystem "areas"
   :description "Describe areas here"
   :author "Nick Matvyeyev <mnasoft@gmail.com>"
   :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"  
@@ -17,3 +17,11 @@
 ;;;;	       (:file "test")
 	       ))
 
+(defsystem "areas/docs"
+  :description "Зависимости для сборки документации"
+  :author "Nick Matvyeyev <mnasoft@gmail.com>"
+  :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"  
+  :depends-on ("areas"
+               "mnas-package"
+               "codex"
+               ))

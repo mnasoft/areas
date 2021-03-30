@@ -4,4 +4,5 @@
               :authors ("Nick Matvyeyev")
               :output-format (:type :multi-html
                               :template :minima)
-              :sources ("manual.scr"))))
+              :sources ("areas.scr"
+                        "areas-graph.scr"))))

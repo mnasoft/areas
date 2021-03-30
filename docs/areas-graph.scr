@@ -1,0 +1,7 @@
+  @begin(section) @title(Графы areas)
+  @begin(list)
+   @item(system-graph @image[src=./system-graph-areas.gv.png]())
+   @item(call-graph   @image[src=./call-graph-areas.gv.png]())
+   @item(class-graph  @image[src=./class-graph-areas.gv.png]())
+  @end(list)
+ @end(section)
