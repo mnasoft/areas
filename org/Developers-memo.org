@@ -2,28 +2,32 @@
 * Генерирование документации
 #+name: graphs
 #+BEGIN_SRC lisp
-    (defun make-document ()
-      (loop
-        :for i :in
-        '((:areas      :areas)
-          )
-        :do (apply #'mnas-package:document i)))
+  (defun make-document ()
+        (loop
+          :for i :in
+          '((:areas      :areas)
+            )
+          :do (apply #'mnas-package:document i)))
 
-    (defun make-graphs ()
-      (loop
-        :for i :in
-        '(:areas
-          )
-        :do (mnas-package:make-codex-graphs i i)))
+  (defun make-graphs ()
+        (loop
+          :for i :in
+          '(:areas
+            )
+          :do (mnas-package:make-codex-graphs i i)))
 
-    (defun make-all ()
-          (make-document)
-          (make-graphs)
-          (codex:document :areas)
-          (make-graphs))
+  (defun make-all ()
+    (make-document)
+    (make-graphs)
+    (codex:document :areas)
+    (make-graphs))
 
-        (make-all)
+  (make-all)
 #+END_SRC
+
+#+RESULTS: graphs
+: NIL
+
 * Публикация
 #+name: publish
 #+BEGIN_SRC shell :var graphs=graphs

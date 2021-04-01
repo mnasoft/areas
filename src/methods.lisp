@@ -25,20 +25,6 @@
 "
   (* (rectangle-length-1 x) (rectangle-length-2 x)))
 
-(defmethod area ((x <zavihritel-osevoy>))
-  "@b(Описание:) метод @b(area) вычисляет площадь осевого завихрителя
-
- @b(Пример использования:)
-@begin[lang=lisp](code)
-  (let ((aaa (make-instance '<zavihritel-osevoy>)))
-    (print  (list aaa (area aaa)))) 
-@end(code)
-"
-  (- (* pi 1/4 (cos (degrees->radians (vane-angle x)))
-	(- (* (out-diameter x) (out-diameter x))
-	   (* (in-diameter x) (in-diameter x))))
-     (* 1/2 (vane-number x) (vane-width x) (- (out-diameter x) (in-diameter x)))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; (setf area) ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

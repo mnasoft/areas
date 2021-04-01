@@ -2,24 +2,6 @@
 
 (in-package :areas)
 
-(defclass <zavihritel-osevoy> (<areable> <perimetrable>)
-  ((out-diameter :accessor <zavihritel-osevoy>-out-diameter :initarg :out-diameter :initform 100.0 :documentation "Наружный диаметр лопаточного аппарата")
-   (in-diameter  :accessor <zavihritel-osevoy>-in-diameter  :initarg :in-diameter  :initform 50.0  :documentation "Внутренний диаметр лопаточного аппарата")
-   (vane-number  :accessor <zavihritel-osevoy>-vane-number  :initarg :vane-number  :initform 12    :documentation "Количество лопаток завихрителя")
-   (vane-angle   :accessor <zavihritel-osevoy>-vane-angle   :initarg :vane-angle   :initform 50    :documentation "Угол установки лопаток завихрителя, градусы")
-   (vane-width   :accessor <zavihritel-osevoy>-vane-width   :initarg :vane-width   :initform 2.5   :documentation "Толщина лопаток завихрителя"))
-  (:documentation "Представляет осевой завихритель"))
-
-(defmethod print-object :before ((x <zavihritel-osevoy>) s) (format s "#<zavihritel-osevoy>" ))
-
-(defmethod print-object         ((x <zavihritel-osevoy>) s)
-  (format s "(do=~A di=~A vn=~A va=~A vw=~A)"
-	  (<zavihritel-osevoy>-out-diameter x)
-          (<zavihritel-osevoy>-in-diameter  x)
-          (<zavihritel-osevoy>-vane-number  x)
-          (<zavihritel-osevoy>-vane-angle   x)
-          (<zavihritel-osevoy>-vane-width   x)))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defclass <point-3d> ()
@@ -93,6 +75,40 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defclass <romb> (<areable> <perimetrable>) ())
+(defclass <rhombus> (<areable> <perimetrable>) ())
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defclass <swirler-axial> (<areable> <perimetrable>)
+  ((out-diameter :accessor <swirler-axial>-out-diameter :initarg :out-diameter :initform 100.0 :documentation "Наружный диаметр лопаточного аппарата")
+   (in-diameter  :accessor <swirler-axial>-in-diameter  :initarg :in-diameter  :initform 50.0  :documentation "Внутренний диаметр лопаточного аппарата")
+   (vane-number  :accessor <swirler-axial>-vane-number  :initarg :vane-number  :initform 12    :documentation "Количество лопаток завихрителя")
+   (vane-angle   :accessor <swirler-axial>-vane-angle   :initarg :vane-angle   :initform 50    :documentation "Угол установки лопаток завихрителя, градусы")
+   (vane-width   :accessor <swirler-axial>-vane-width   :initarg :vane-width   :initform 2.5   :documentation "Толщина лопаток завихрителя"))
+  (:documentation "Представляет осевой завихритель"))
+
+(defmethod print-object :before ((x <swirler-axial>) s) (format s "#<swirler-axial>" ))
+
+(defmethod print-object         ((x <swirler-axial>) s)
+  (format s "(do=~A di=~A vn=~A va=~A vw=~A)"
+	  (<swirler-axial>-out-diameter x)
+          (<swirler-axial>-in-diameter  x)
+          (<swirler-axial>-vane-number  x)
+          (<swirler-axial>-vane-angle   x)
+          (<swirler-axial>-vane-width   x)))
+
+(defmethod area ((x <swirler-axial>))
+  "@b(Описание:) метод @b(area) вычисляет площадь осевого завихрителя
+
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+  (let ((aaa (make-instance '<swirler-axial>)))
+    (print  (list aaa (area aaa)))) 
+@end(code)
+"
+  (- (* pi 1/4 (cos (degrees->radians (vane-angle x)))
+	(- (* (out-diameter x) (out-diameter x))
+	   (* (in-diameter x) (in-diameter x))))
+     (* 1/2 (vane-number x) (vane-width x) (- (out-diameter x) (in-diameter x)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
