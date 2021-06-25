@@ -33,7 +33,13 @@
            )
   (:export <circle>
            <circle>-radius
-           <circle>-center)
+           <circle>-center
+           )
+  (:export <circular-segment>
+           <circular-segment>-angle 
+           heigth
+           width
+           )
   (:export <rectangle>
            <rectangle>-length-1
            <rectangle>-length-2

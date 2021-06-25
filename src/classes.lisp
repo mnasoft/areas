@@ -39,6 +39,59 @@
           (<circle>-radius x)
           (<circle>-center x)))
 
+(defclass <circular-segment> (<circle>)
+  ((angle :accessor <circular-segment>-angle :initarg :angle :initform pi :documentation "Центральный угол сегмента."))
+  (:documentation "@b(Описание:) класс @b(<circle>) представляет сегмент круга."))
+
+(defmethod print-object         ((x <circular-segment>) s)
+  (format s "(r=~A c=~S α=~A)"
+          (<circle>-radius x)
+          (<circle>-center x)
+          (<circular-segment>-angle x)))
+
+(defmethod width ((circular-segment <circular-segment>))
+  
+  )
+
+(defmethod height ((x <circular-segment>))
+  "@b(Описание:) метод @b(height) возвращает высоту кругового сегмента.
+
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+ (defparameter *circular-segment* (make-instance '<circular-segment>))
+ (setf (height *circular-segment*) 100.0) => 3.1415927
+@end(code)"
+  (* (<circle>-radius x)
+     (- 1 (cos (/ (<circular-segment>-angle x)
+                  2)))))
+
+(defmethod (setf height) (height (x <circular-segment>))
+  "@b(Описание:) метод @b(height) устанавливант высоту кругового сегмента.
+
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+ (defparameter *circular-segment* (make-instance '<circular-segment>))
+ (setf (height *circular-segment*) 50.0) => 2.0943952
+@end(code)"
+  (setf (<circular-segment>-angle x)
+        (* 2
+           (acos (- 1 (/ height
+                  (<circle>-radius x)))))))
+
+(defmethod area ((x <circular-segment>))
+  "@b(Описание:) метод @b(area) возвращает площадь кругового сегмента.
+
+ @b(Пример использования:)
+@begin[lang=lisp](code)
+ (defparameter *circular-segment* (make-instance '<circular-segment>))
+ (setf (height *circular-segment*) 10.0)
+ (area *circular-segment*)
+@end(code)"
+  (* (<circle>-radius x)
+     (<circle>-radius x)
+     (- (<circular-segment>-angle x)
+        (sin (<circular-segment>-angle x)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defclass <form> () ())
 

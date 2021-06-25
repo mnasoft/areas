@@ -85,3 +85,11 @@
     (area (make-instance 'circle :radius 76)))
 (area (make-instance 'circle :radius 80)))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defparameter *circular-segment* (make-instance '<circular-segment>))
+
+(setf (height *circular-segment*) 100.0) 
+
+(*circular-segment* (<circular-segment>-angle x)
