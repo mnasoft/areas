@@ -13,7 +13,7 @@
  (let ((c (make-instance '<circle>))) (print (list c (area c))))
 @end(code)
 "
-  (* pi (circle-radius x) (circle-radius x)))
+  (* pi (<circle>-radius x) (<circle>-radius x)))
 
 (defmethod area ((x <rectangle>))
 "@b(Описание:) area возвращает плошадь прямоугольника.
