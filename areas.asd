@@ -5,7 +5,7 @@
   :author "Nick Matvyeyev <mnasoft@gmail.com>"
   :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"  
   :serial t
-  :depends-on (#:convertion) ;;;; #:lst-arr
+  :depends-on ("convertion" "math/appr") ;;;; #:lst-arr
   :components ((:module "src"
 		:serial nil
                 :components ((:file "package")

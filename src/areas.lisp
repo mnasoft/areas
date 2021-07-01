@@ -248,5 +248,11 @@
 "
   (circle-diameter-by-area area))
 
-
-
+(defun simpson (a b func)
+  "Формула Ньютона-Симпсона интегрирования на отрезке (a, b)."
+  (* 1/6
+     (- b a)
+     (+ (funcall func a)
+        (* 4
+           (funcall func (* 1/2 (+ a b))))
+        (funcall func b))))

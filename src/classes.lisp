@@ -165,3 +165,35 @@
      (* 1/2 (vane-number x) (vane-width x) (- (out-diameter x) (in-diameter x)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defclass <pnt-curve> ()
+  ((points :accessor <pnt-curve>-points :initarg :points :initform nil :documentation "Задает список точек."))
+  (:documentation "Представляет 2d-кривую, заданную точками. У этой
+ кривой абсциссы точек должны монотонно возрастать или убывать."))
+
+(defmethod print-object ((x <pnt-curve>) s)
+  (format s "#<pnt-curve> (~{~S~^ ~})" (<pnt-curve>-points x)))
+
+(defmethod y-by-x ((pnt-curve <pnt-curve>) x)
+  "@b(Описание:) метод @b(y-by-x) возвращает ординату по значению
+  абсциссы для кривой @b(pnt-curve)."
+  (math/appr:appr-table x (<pnt-curve>-points pnt-curve)))
+
+(defmethod integrate ((pnt-curve <pnt-curve>) (from number) (to number) &key (step 0.001))
+  "@b(Описание:) метод @b(integrate) возвращает площадь области
+  ограниченной: кривой @b(pnt-curve), осью абсцисс y=0, кривой
+  x=@b(from), кривой x=@b(to). Интенрирование выполняется по формуле
+  Ньютона-Симпсона. Шаг интегрирования step=0.001."
+  (labels ((y (x) (y-by-x pnt-curve x)))
+    (let ((n (/ (- to from) step)))
+      (when (< n 10) (setf n 10))
+      (let  ((delta (/ (- to from) n)))
+        (apply #'+
+               (loop :for i :from 0 :below n
+                     :collect
+                     (let ((a (+ from (* delta i)))
+                           (b (+ from (* delta (1+ i)))))
+                       (simpson a b #'y))))))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
