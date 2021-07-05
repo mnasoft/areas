@@ -18,13 +18,13 @@
   (:export ring-equal-area-radius
            ring-equal-area-radius-list
            ring-equal-area-radius-relative-higth-list)
-  (:export axial-swirler)
-  (:export <zavihritel-osevoy>
-           <zavihritel-osevoy>-out-diameter
-           <zavihritel-osevoy>-in-diameter
-           <zavihritel-osevoy>-vane-number
-           <zavihritel-osevoy>-vane-angle
-           <zavihritel-osevoy>-vane-width
+  (:export swirler-axial-area)
+  (:export <swirler-axial>
+           <swirler-axial>-out-diameter
+           <swirler-axial>-in-diameter
+           <swirler-axial>-vane-number
+           <swirler-axial>-vane-angle
+           <swirler-axial>-vane-width
            )
   (:export <point-3d>
            <point-3d>-x

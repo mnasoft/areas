@@ -64,8 +64,8 @@
   (let ((summ (apply #'+ (cons x rst))))
     (mapcar #'(lambda (el) (/ el summ)) (cons x rst))))
 
-(defun axial-swirler (d-sm d-big n-blades width-blades angle-blades)
-"@b(Описание:) axial-swirler выполняет расчет площади осевого завихрителя.
+(defun swirler-axial-area (d-sm d-big n-blades width-blades angle-blades)
+ "@b(Описание:) swirler-axial-area выполняет расчет площади осевого завихрителя.
 
 @b(Переменые:)
 @begin(list)
