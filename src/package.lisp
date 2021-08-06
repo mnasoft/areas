@@ -17,7 +17,9 @@
   (:export equivalent-area-group-holes)
   (:export ring-equal-area-radius
            ring-equal-area-radius-list
-           ring-equal-area-radius-relative-higth-list)
+           ring-equal-area-radius-relative-higth-list
+           ring-equal-area-border-radius-list
+           )
   (:export swirler-axial-area)
   (:export <swirler-axial>
            <swirler-axial>-out-diameter

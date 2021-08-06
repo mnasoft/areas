@@ -186,6 +186,20 @@
   (sqrt (+ (* (- (* radius-big radius-big) (* radius-small radius-small)) i (/ 1.0 n))
 	   (* radius-small radius-small))))
 
+(defun ring-equal-area-border-radius-list (radius-big radius-small n )
+  "@b(Описание:) ring-equal-area-radius-list возвращает радиусы границ 
+ равновеликих площадей при делении кольца на n частей.
+
+ @b(Переменые:)
+@begin(list)
+ @item(radius-big - Максимальный радиус;)
+ @item(radius-small - Минимальный радиус;)
+ @item(n  - Количество концентричных колец.)
+@end(list)
+"
+  (loop :for i :from 0 :to n
+        :collect (ring-equal-area-radius radius-big radius-small i n)))
+
 (defun ring-equal-area-radius-list (radius-big radius-small n )
   "@b(Описание:) ring-equal-area-radius-list возвращает радиусы
 центров масс равновеликих площадей при делении кольца на n частей.
