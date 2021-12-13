@@ -36,6 +36,7 @@
   (:export <circle>
            <circle>-radius
            <circle>-center
+           make-<circle>
            )
   (:export <circular-segment>
            <circular-segment>-angle 

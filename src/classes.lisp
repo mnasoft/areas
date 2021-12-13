@@ -39,6 +39,9 @@
           (<circle>-radius x)
           (<circle>-center x)))
 
+(defun make-<circle> (diameter &key (center (make-instance '<point-3d>)))
+  (make-instance '<circle> :radius (/ diameter 2) :center center))
+
 (defclass <circular-segment> (<circle>)
   ((angle :accessor <circular-segment>-angle :initarg :angle :initform pi :documentation "Центральный угол сегмента."))
   (:documentation "@b(Описание:) класс @b(<circle>) представляет сегмент круга."))
