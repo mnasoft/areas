@@ -242,10 +242,10 @@
      (ring-equal-area-radius-list radius-big radius-small n))))
 
 (defun hydraulic-diameter (area perimeter)
-  "@b(Описание:) функция @b(hydraulic-diameter) возвращает гидравлический диаметр.
+  "@b(Описание:) функция @b(hydraulic-diameter) возвращает
+ гидравлический диаметр.
 
- @b(Пример использования:)
-@begin[lang=lisp](code)
+ @b(Пример использования:) @begin[lang=lisp](code)
  (hydraulic-diameter  (/ pi 4) pi) => 1.0d0 
 @end(code)
 "
