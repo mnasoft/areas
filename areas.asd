@@ -8,12 +8,8 @@
   :depends-on ("convertion" "math/appr") ;;;; #:lst-arr
   :components ((:module "src"
 		:serial nil
-                :components ((:file "package")
-                             (:file "areas")
-	                     (:file "classes")
-       	                     (:file "generics" :depends-on ("classes"))
-	                     (:file "methods"  :depends-on ("classes" "generics"))
-                             ))
+                :components ((:file "areas")
+	                     (:file "methods" :depends-on ("areas"))))
 ;;;;	       (:file "test")
 	       ))
 
