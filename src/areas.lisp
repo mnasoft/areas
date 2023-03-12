@@ -1,6 +1,6 @@
 ;;;; package.lisp
 
-(defpackage #:areas
+(defpackage :areas
   (:use #:cl #:convertion)
   (:export circle-area-by-diameter
            circle-area-by-radius
