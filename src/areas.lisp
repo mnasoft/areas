@@ -536,10 +536,11 @@
     (print  (list aaa (area aaa)))) 
 @end(code)
 "
-  (- (* pi 1/4 (cos (degrees->radians (vane-angle x)))
-	(- (* (out-diameter x) (out-diameter x))
-	   (* (in-diameter x) (in-diameter x))))
-     (* 1/2 (vane-number x) (vane-width x) (- (out-diameter x) (in-diameter x)))))
+  (- (* pi 1/4 (cos (degrees->radians (<swirler-axial>-vane-angle x)))
+	(- (* (<swirler-axial>-out-diameter x) (<swirler-axial>-out-diameter x))
+	   (* (<swirler-axial>-in-diameter x) (<swirler-axial>-in-diameter x))))
+     (* 1/2 (<swirler-axial>-vane-number x) (<swirler-axial>-vane-width x)
+        (- (<swirler-axial>-out-diameter x) (<swirler-axial>-in-diameter x)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
