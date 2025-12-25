@@ -43,6 +43,7 @@
            heigth
            width
            )
+  (:export <quadrilateral>)
   (:export <rectangle>
            <rectangle>-length-1
            <rectangle>-length-2
@@ -484,6 +485,21 @@
 ;;;;      (:input :type "submit"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defclass <quadrilateral> (<areable> <perimetrable>)
+  ((length-1 :accessor <quadrilateral>-length-1 :initarg :length-1 :initform 100.0
+	     :documentation "Длина первой стороны прямоунольника")
+   (length-2 :accessor <quadrilateral>-length-2 :initarg :length-2 :initform 50.0
+	     :documentation "Длина второй стороны прямоунольника")
+   (length-3 :accessor <quadrilateral>-length-3 :initarg :length-2 :initform 100.0
+	     :documentation "Длина второй стороны прямоунольника")
+   (length-4 :accessor <quadrilateral>-length-4 :initarg :length-2 :initform 50.0
+	     :documentation "Длина второй стороны прямоунольника")
+   (diagonal :accessor <quadrilateral>-diagonal :initarg :center   :initform 120.0
+	     :documentation "Геометрический центр прямоугольника")
+   (angle    :accessor <rectangle>-angle    :initarg :center :initform 0
+	     :documentation "Направление первой стороны в радианах"))
+  (:documentation "@b(Описание:) класс @b(<circle>) представляет круг."))
 
 (defclass <rectangle> (<areable> <perimetrable>)
   ((length-1 :accessor <rectangle>-length-1 :initarg :length-1 :initform 100.0
