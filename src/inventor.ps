@@ -1,0 +1,19 @@
+$invAPP = [Runtime.InteropServices.Marshal]::GetActiveObject("Inventor.Application")
+$doc = $invAPP.ActiveDocument
+Write-Host "Активный документ $($doc.DisplayName)"
+$interaction = $invAPP.CommandManager.CreateInteractionEvents()
+
+$interaction.Start()
+
+$select = $interaction.SelectEvents
+
+$select.AddSelectionFilter([Inventor.SelectionFilterEnum]::kSketchpointFilter)
+
+$selected = $select.SelectedEntities
+
+Writ-Host "$selected"
+
+$interaction.Stop()
+
+$invAPP = New-Object  -ComObject Inventor.Application
+$invAPP.Visible = $true
