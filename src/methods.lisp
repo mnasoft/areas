@@ -30,7 +30,7 @@
 
 (defmethod (setf area) (area (obj <circle>))
   ""
-  (setf (circle-radius obj) (sqrt (/ area pi))))
+  (setf (radius obj) (sqrt (/ area pi))))
 
 (defmethod (setf area) (area (obj <rectangle>))
   "@b(Пример использования:)
